@@ -5,11 +5,12 @@ export interface IRooms{
 
 }
 export interface IRoomProperties{
-roomNumber:number;
+roomNumber?:string;
 roomType:string;
-amenties:string,
+amenities:string,
 price:number,
-photo:String;
-checkInTime: Date;
-checkOutTIme:Date;
+photos:String;
+checkinTime: Date;
+checkoutTime:Date;
+rating:number;
 }

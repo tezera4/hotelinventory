@@ -1,4 +1,5 @@
-<app-rooms></app-rooms>
+<!-- <app-rooms></app-rooms> -->
+
 <!-- <div [ngSwitch]="role">
     <div *ngSwitchCase="'User'">
       Welcome user
@@ -11,5 +12,15 @@
     </div>
 
 </div> -->
+<!--The following line of code user to ref dynamic template fro examle component-->
+<!-- <div><ng-template #teze></ng-template>
+ 
+  </div> -->
+  <!-- <h2 #ele>Tezera is working hard referencing DOM element</h2> -->
+   <app-container>
+    <app-employee></app-employee>
+    <app-rooms></app-rooms>
+   </app-container>
 
-<router-outlet></router-outlet>
+   <router-outlet></router-outlet>
+   

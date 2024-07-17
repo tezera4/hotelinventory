@@ -1,41 +1,42 @@
 
+<app-header></app-header>
+<!--Please note that the async pipe is used to avoid subscribe and also it will
+by default unsubscribe that means no need to write the following code
+ ngOnDestroy(): void {
+    this.subscription.unsubscribe;    
+  }
+-->
+{{roomd$|async|json}} as rooms
 <h1>Welcome to {{hotelName}}</h1>
 Number of rooms
-
+<h1>{{totalByteRead}}</h1> is downloaded
 <!-- Room available -->
 
 <div [ngStyle]="{'color':rooms?.availableRooms ? 'red':'green'}">
     <div [innerText]="numberOfRooms"></div>
 </div>
 
-<div *ngIf="rooms?.availableRooms">
-    <table>
-        <tr>
-           <th>index</th>
-           <th>even/odd</th>
-            <th>Room Number</th>
-            <th>roomType</th>
-            <th>amenties</th>
-            <th>price</th>
-            <th>photo</th>
-            <th>checkInTime</th>
-            <th>checkOutTIme</th>
-        </tr>
-        <tr *ngFor="let x of roomList; let i=index; let e=even;let o=odd" 
-        [ngClass]="e ? 'even':'odd'">
-           <td>{{i}}</td>
-        <td>{{e ? "Even":"Odd"}}</td>
-            <td>{{x.roomNumber}}</td>
-            <td>{{x.roomType}}</td>
-            <td>{{x.amenties}}</td>
-            <td>{{x.price}}</td>
-            <td>{{x.photo}}</td>
-            <td>{{x.checkInTime}}</td>
-            <td>{{x.checkOutTIme}}</td>
-        </tr>
-
-    </table>
+<br/>
+<!-- <div>{{roomList | json}}</div> -->
+{{title}}
+<div *ngIf="selectedRoom">
+    {{selectedRoom|json}}
 </div>
+<!-- <div *ngIf="rooms?.availableRooms">
+    <app-room-list [rooms]="roomList" [title]="title" (selectedRoom)="selectRoom($event)"></app-room-list>
+</div> -->
+<div *ngIf="roomd$|async as rooms">
+    <!--the rooms is the unrapped data then after we can use the unrapped data-->
+    <app-room-list [rooms]="rooms" [title]="title" (selectedRoom)="selectRoom($event)"></app-room-list>
+</div>
+<button (click)="AddRoom()" >AddRow</button>
+<button (click)="Toggle()">Togle</button>
+<button (click)="editRoom()">Edit</button>
+<button (click)="deleteRoom()">Delete</button>
+
+
+
+
 
 
 

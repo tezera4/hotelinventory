@@ -1,0 +1,34 @@
+
+<h1>{{title}}</h1> from Parent component
+<table class="table">
+    <tr>
+       <th>index</th>
+       <th>even/odd</th>
+        <th>Room Number</th>
+        <th>roomType</th>
+        <th>amenties</th>
+        <th>price</th>
+        <th>photo</th>
+        <th>checkInTime</th>
+        <th>checkOutTIme</th>
+        <th>rate</th>
+        <th>Select Room</th>
+        <th>Delete Room</th>
+    </tr>
+    <tr *ngFor="let x of rooms; let i=index; let e=even;let o=odd" 
+    [ngClass]="e ? 'even':'odd'">
+       <td>{{i}}</td>
+    <td>{{e ? "Even":"Odd"}}</td>
+        <td>{{x.roomNumber}}</td>
+        <td>{{x.roomType}}</td>
+        <td>{{x.amenities | titlecase}}</td>
+        <td>{{x.price | currency:'INR'}}</td>
+        <td>{{x.photos}}</td>
+        <td>{{x.checkinTime | date: 'mediumDate' }}</td>
+        <td>{{x.checkoutTime | date: 'mediumDate'}}</td>
+        <td>{{x.rating | number:'1.1-2'}}</td>
+        <td><button class="btn primary" (click)="selectedRoomFun(x)">select</button></td>
+        
+    </tr>
+
+</table>
