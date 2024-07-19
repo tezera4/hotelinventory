@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { IRoomProperties } from './rooms';
-import {HttpClient, HttpRequest} from '@angular/common/http'
+import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoomsService {
-  trymybest$=this.httpClient.get<IRoomProperties[]>('/api/roomds');
+  //let us comment the floowing and add in the interceptor
+  // header=new HttpHeaders({'token':'12345fgfg'});
+  trymybest$=this.httpClient.get<IRoomProperties[]>('/api/Rooms');
 
   constructor(private httpClient:HttpClient) { }
   // roomList:IRoomProperties[]=[
