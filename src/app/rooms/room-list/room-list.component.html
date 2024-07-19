@@ -27,8 +27,8 @@
         <td>{{x.checkinTime | date: 'mediumDate' }}</td>
         <td>{{x.checkoutTime | date: 'mediumDate'}}</td>
         <td>{{x.rating | number:'1.1-2'}}</td>
-        <td><button class="btn primary" (click)="selectedRoomFun(x)">select</button></td>
-        
+        <!-- <td><button class="btn primary" (click)="selectedRoomFun(x)">select</button></td> -->
+        <button class="btn primary" [routerLink]="['/room',x.roomNumber]">Book Room</button>
     </tr>
 
 </table>
