@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap, Params } from '@angular/router';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-room-booking',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoomBookingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route:ActivatedRoute) { }
+  //the following line of code is very important because it is observable and
+  //using async pipe you can unrape which helps to authomaticaly close the subscription
+  //to avoid memory leak or consumption.
 
+id$=this.route.paramMap.pipe(
+  map((param)=>param.get('id'))
+);
+id:any;
   ngOnInit(): void {
+    this.route.paramMap.subscribe(param=>{
+this.id=param.get;
+    }
+  )
   }
 
 }

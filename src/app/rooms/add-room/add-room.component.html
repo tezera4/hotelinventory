@@ -1,0 +1,52 @@
+<!--
+to work with themplate driven form in angular you have to use html5 validation.
+like required, min, max,minlength,maxlength, email, pattern etc
+for this purpose you have to get instance of the form
+#anyname="ngForm"
+-->
+
+{{room|json}}
+<div *ngIf="successMessage!=''" class="alert alert-success">
+    {{successMessage}}
+</div>
+{{roomAddForm.pristine}} <!--the is used to control the wether the
+ user interucted to the form or not. once the user clicked in any of the control then the form status
+ changed to dirty -->
+{{roomAddForm.dirty}}
+{{roomAddForm.valid}}
+{{roomAddForm.invalid}}
+{{roomAddForm.value|json}}
+
+<form (ngSubmit)="addRoom(roomAddForm)" #roomAddForm="ngForm">
+    <div class="form-group">
+        <input class="form-control" required [(ngModel)]="room.roomType" type="text" name="roomtype" placeholder="Room type" />
+    </div>
+    <div class="form-group">
+        <input class="form-control" required minlength="5" maxlength="20" #controlamenities="ngModel" [(ngModel)]="room.amenities" type="text" name="amenities" placeholder="amenities" />
+    </div>
+    <div *ngIf="controlamenities.errors?.['minlength']" class="alert alert-danger">
+        Amenties min length is 5
+    </div>
+    <div class="form-group">
+        <input class="form-control" required [(ngModel)]="room.price" type="number" name="price" placeholder="price" />
+    </div>
+    <div class="form-group">
+        <input class="form-control" required [(ngModel)]="room.photos" type="text" name="photos" placeholder="photos" />
+    </div>
+    <div class="form-group">
+        <input class="form-control" required [(ngModel)]="room.checkinTime" type="datetime" name="checkinTime" placeholder="checkin Time" />
+    </div>
+    <div class="form-group">
+        <input class="form-control" required [(ngModel)]="room.checkoutTime" type="datetime" name="checkoutTime" placeholder="checkout Time" />
+    </div>
+    <div class="form-group">
+        <input class="form-control" min="1" max="5" required #controlRates="ngModel" [(ngModel)]="room.rating" type="number" name="rating" placeholder="rating" />
+    </div>
+    <div *ngIf="controlRates.errors?.['min']" class="alert alert-danger">
+       The minimum rate is 1
+    </div>
+    <div>
+        <button [disabled]="roomAddForm.invalid" class="btn btn-primary" type="submit">submit</button>
+    </div>
+</form>
+

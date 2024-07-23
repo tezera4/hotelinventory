@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../service2/config.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  selector: 'app-booking',
+  templateUrl: './booking.component.html',
+  styleUrls: ['./booking.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class BookingComponent implements OnInit {
 
   constructor(private config:ConfigService) { }
-headerTitle='Header Title';
+
   ngOnInit(): void {
   }
 

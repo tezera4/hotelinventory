@@ -7,6 +7,7 @@ by default unsubscribe that means no need to write the following code
   }
 -->
 <!-- {{roomd$|async|json}} as rooms -->
+
 <h1>Welcome to {{hotelName}}</h1>
 Number of rooms
 <h1>{{totalByteRead}}</h1> is downloaded
@@ -25,6 +26,9 @@ Number of rooms
 <!-- <div *ngIf="rooms?.availableRooms">
     <app-room-list [rooms]="roomList" [title]="title" (selectedRoom)="selectRoom($event)"></app-room-list>
 </div> -->
+<!-- the following code is the place holder -->
+<router-outlet></router-outlet>
+
 <div *ngIf="roomd$|async as rooms">
     <!--the rooms is the unrapped data then after we can use the unrapped data-->
     <app-room-list [rooms]="rooms" [title]="title" (selectedRoom)="selectRoom($event)"></app-room-list>

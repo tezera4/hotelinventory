@@ -57,6 +57,7 @@ export class RoomsService {
     return this.httpClient.get<IRoomProperties[]>('/api/rooms');
   }
   createRoom(room:IRoomProperties){
+    console.log("inside createRoom==================service=====")
     return this.httpClient.post<IRoomProperties[]>("/api/rooms",room);
   }
   // deleteRoom(room:IRoomProperties){

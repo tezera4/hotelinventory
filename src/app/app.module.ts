@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RoomsComponent } from './rooms/rooms.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RoomListComponent } from './rooms/room-list/room-list.component';
+
 import { HeaderComponent } from './header/header.component';
 import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './employee/employee.component';
@@ -21,25 +21,35 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { RoomBookingComponent } from './rooms/room-booking/room-booking.component';
+import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { HoverDirective } from './hover.directive';
+import { EmailvalidatorDirective } from './emailvalidator/emailvalidator.directive';
+import { RoomModule } from './rooms/room.module';
+import{urlToken} from './service2/StringToken';
 function initFactory(initService: InitService) {
 
   return ()=> initService.init();
 }
 @NgModule({
   declarations: [
-    AppComponent,
-    RoomsComponent,
-    RoomListComponent,
-    HeaderComponent,
+    AppComponent,   
+    
     ContainerComponent,
     EmployeeComponent,
     AppNavComponent,
-    NotfoundComponent,
-    RoomBookingComponent
+    NotfoundComponent,    
+    LoginComponent,
+    HoverDirective,
+    EmailvalidatorDirective
   ],
   imports: [
     BrowserModule,
+    //The following module is xommented because
+    // since e=we have decided the room module to load lazily
+    // so we have to Isolet it from other modules
+
+    // RoomModule, //the future module must come before th app route
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -48,7 +58,9 @@ function initFactory(initService: InitService) {
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    FormsModule,
+    
 
   ],
   providers: [
@@ -71,6 +83,10 @@ function initFactory(initService: InitService) {
       useFactory:initFactory,
       deps:[InitService],
       multi:true
+    },
+    {
+      provide:urlToken,
+      useValue:{URL:"tezera.com"}
     }
   ],
   bootstrap: [AppComponent]

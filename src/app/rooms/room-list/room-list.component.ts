@@ -1,6 +1,7 @@
 import { Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { IRoomProperties } from '../rooms';
 import { RoomsService } from '../rooms.service';
+import { ConfigService } from 'src/app/service2/config.service';
 @Component({
   selector: 'app-room-list',
   templateUrl: './room-list.component.html',
@@ -8,7 +9,7 @@ import { RoomsService } from '../rooms.service';
 })
 export class RoomListComponent implements OnInit, OnChanges,DoCheck {
 
-  constructor( ) {
+  constructor(private config:ConfigService ) {
    console.log("constructor====================");
    }
   @Input() title:string='';

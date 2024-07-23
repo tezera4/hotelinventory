@@ -4,6 +4,7 @@ import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './rooms.service';
 import { catchError, observable, Observable, of, Subscription } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
+import { ConfigService } from '../service2/config.service';
 
 @Component({
   selector: 'app-rooms',
@@ -14,7 +15,7 @@ import { HttpEventType } from '@angular/common/http';
 export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked, OnDestroy {
 
 //is used most of the time to inject dependency
-  constructor(private roomService:RoomsService) { }
+  constructor(private roomService:RoomsService, private config:ConfigService) { }
   subscription!:Subscription;
   title='Room Lists';
   stream= new Observable(x=>{
